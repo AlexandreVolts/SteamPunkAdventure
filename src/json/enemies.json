@@ -1,0 +1,62 @@
+{
+  "angler": {
+    "lives": 8,
+    "size": {
+      "min": 0.9,
+      "max": 1.1
+    },
+    "speed": {
+      "min": 350,
+      "max": 375
+    },
+    "rows": 3
+  },
+  "night-angler": {
+    "lives": 12,
+    "size": {
+      "min": 0.8,
+      "max": 1
+    },
+    "speed": {
+      "min": 375,
+      "max": 475
+    },
+    "rows": 2
+  },
+  "lucky-fish": {
+    "lives": 18,
+    "size": {
+      "min": 0.7,
+      "max": 0.9
+    },
+    "speed": {
+      "min": 375,
+      "max": 400
+    },
+    "rows": 2
+  },
+  "hive-whale": {
+    "lives": 20,
+    "size": {
+      "min": 2,
+      "max": 2
+    },
+    "speed": {
+      "min": 150,
+      "max": 200
+    },
+    "rows": 1
+  },
+  "drone": {
+    "lives": 4,
+    "size": {
+      "min": 0.4,
+      "max": 0.6
+    },
+    "speed": {
+      "min": 500,
+      "max": 600
+    },
+    "rows": 2
+  }
+}

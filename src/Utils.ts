@@ -1,0 +1,6 @@
+export namespace Utils
+{
+  export function rand(min: number, max: number) {
+    return (min + Math.random() * (max - min));
+  }
+}
