@@ -1,8 +1,8 @@
-import { App } from "./App";
-import { ASprite } from "./ASprite";
-import { Vector2 } from "./Vector2";
+import { App } from "../App";
+import { Vector2 } from "../Vector2";
+import { AParticle } from "./AParticle";
 
-export class Particle extends ASprite
+export class GearParticle extends AParticle
 {
   private static readonly NB_COLS = 3;
   private static readonly NB_ROWS = 3;
@@ -16,15 +16,12 @@ export class Particle extends ASprite
   private angle = 0;
   private bounced = false;
 
-  constructor(protected position: Vector2)
+  constructor(position: Vector2)
   {
-    super(document.getElementById("gears") as HTMLImageElement, {x: 0, y: 0});
-    const size = 25 + Math.random() * 50;
-    const index = ~~(Math.random() * Particle.NB_COLS * Particle.NB_ROWS);
+    super("gears", {...position});
+    const index = ~~(Math.random() * GearParticle.NB_COLS * GearParticle.NB_ROWS);
 
-    this.size.x = size;
-    this.size.y = size;
-    this.gearSpritePosition = {x: index % Particle.NB_COLS,  y: ~~(index / Particle.NB_COLS)};
+    this.gearSpritePosition = {x: index % GearParticle.NB_COLS,  y: ~~(index / GearParticle.NB_COLS)};
   }
 
   public update(delta: number): void
@@ -41,8 +38,8 @@ export class Particle extends ASprite
   }
   public draw(ctx: CanvasRenderingContext2D): void
   {
-    const w = this.image.width / Particle.NB_COLS;
-    const h = this.image.height / Particle.NB_COLS
+    const w = this.image.width / GearParticle.NB_COLS;
+    const h = this.image.height / GearParticle.NB_COLS
   
     ctx.save();
     ctx.translate(this.position.x, this.position.y);

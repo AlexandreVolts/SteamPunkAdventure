@@ -1,10 +1,10 @@
 import { App } from "../App";
 import { AnimatedSprite } from "../AnimatedSprite";
-import { Particle } from "../Particle";
-import { ParticleEmitter } from "../ParticleEmitter";
+import { ParticleEmitter } from "../particles/ParticleEmitter";
 import { IEnemyProps } from "./IEnemyProps";
 import { Utils } from "../Utils";
 import { Vector2 } from "../Vector2";
+import { AParticle } from "../particles/AParticle";
 
 export class AEnemy extends AnimatedSprite
 {
@@ -46,7 +46,7 @@ export class AEnemy extends AnimatedSprite
         this.size.x = this.defaultSize.x * (1 + this.sizeModifier);
         this.size.y = this.defaultSize.y * (1 + this.sizeModifier);
     }
-    public hit(): Particle[]
+    public hit(): AParticle[]
     {
         this.lives--;
         this.sizeModifier = AEnemy.SIZE_MODIFIER;
@@ -55,6 +55,18 @@ export class AEnemy extends AnimatedSprite
     public kill(): void
     {
         this.lives = 0;
+    }
+    public draw(ctx: CanvasRenderingContext2D): void
+    {
+        const half = this.size.x * 0.5;
+
+        super.draw(ctx);
+        if (this.lives === this.score)
+            return;
+        ctx.fillStyle = "orange";
+        ctx.fillRect(this.position.x + half * 0.5, this.position.y, half, 4);
+        ctx.fillStyle = "green";
+        ctx.fillRect(this.position.x + half * 0.5, this.position.y, half * (this.lives / this.score), 4);
     }
     
     public get isAlive(): boolean

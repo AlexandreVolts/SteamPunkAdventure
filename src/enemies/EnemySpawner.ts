@@ -14,7 +14,7 @@ export class EnemySpawner
     "hive-whale": HiveWhale,
   };
   private elapsedTime = 0;
-  private level = 3;
+  private level = 1;
   private delay = 0;
   private enemies: AEnemy[];
 

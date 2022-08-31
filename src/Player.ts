@@ -2,8 +2,8 @@ import { App } from "./App";
 import { Projectile } from "./Projectile";
 import { AnimatedSprite } from "./AnimatedSprite";
 import { APowerUp } from "./power-ups/APowerUp";
-import { Particle } from "./Particle";
-import { ParticleEmitter } from "./ParticleEmitter";
+import { GearParticle } from "./particles/GearParticle";
+import { ParticleEmitter } from "./particles/ParticleEmitter";
 
 export class Player extends AnimatedSprite
 {
@@ -70,7 +70,7 @@ export class Player extends AnimatedSprite
         this.row = this.powerUp ? 1 : 0;
         this.loadShoot(delta);
     }
-    public hit(): Particle[]
+    public hit(): GearParticle[]
     {
         if (!this.invincible)
             this.lives--;

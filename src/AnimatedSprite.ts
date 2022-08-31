@@ -3,8 +3,10 @@ import { Vector2 } from "./Vector2";
 
 export class AnimatedSprite extends ASprite
 {
-    private static readonly ANIMATION_SPEED = 35;
+    private static readonly ANIMATION_SPEED = 30;
     private readonly sourceSize = {x: 0, y: 0};
+    protected runOnce = false;
+    private isFinished = false;
     private currentFrame = 0;
     protected row = 0;
     
@@ -23,7 +25,10 @@ export class AnimatedSprite extends ASprite
     public update(delta: number)
     {
         this.currentFrame = this.currentFrame + (delta * AnimatedSprite.ANIMATION_SPEED);
-        this.currentFrame %= (this.nbFrames - 1);
+        if (this.currentFrame >= this.nbFrames) {
+            this.currentFrame = 0;
+            this.isFinished = this.runOnce;
+        }
     }
     public draw(ctx: CanvasRenderingContext2D)
     {
@@ -34,5 +39,9 @@ export class AnimatedSprite extends ASprite
             this.position.x, this.position.y,
             this.size.x, this.size.y,
         );
+    }
+    public get isAlive(): boolean
+    {
+        return (!this.isFinished);
     }
 }
