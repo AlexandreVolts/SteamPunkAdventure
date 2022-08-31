@@ -1,7 +1,6 @@
 import { ASprite } from "./ASprite";
 import { Background } from "./Background";
 import { AEnemy } from "./enemies/AEnemy";
-import { Drone } from "./enemies/Drone";
 import { EnemySpawner } from "./enemies/EnemySpawner";
 import { HiveWhale } from "./enemies/HiveWhale";
 import { LuckyFish } from "./enemies/LuckyFish";

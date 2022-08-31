@@ -5,6 +5,7 @@ import { IEnemyProps } from "./IEnemyProps";
 import { Utils } from "../Utils";
 import { Vector2 } from "../Vector2";
 import { AParticle } from "../particles/AParticle";
+import { AnimatedParticle } from "../particles/AnimatedParticle";
 
 export class AEnemy extends AnimatedSprite
 {
@@ -48,9 +49,14 @@ export class AEnemy extends AnimatedSprite
     }
     public hit(): AParticle[]
     {
+        const output = ParticleEmitter.emit(this.position, this.size);
+        
         this.lives--;
         this.sizeModifier = AEnemy.SIZE_MODIFIER;
-        return (ParticleEmitter.emit(this.position, this.size));
+        if (!this.isAlive) {
+            output.push(new AnimatedParticle("fire-explosion", this.position, this.size));
+        }
+        return (output);
     }
     public kill(): void
     {
