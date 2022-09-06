@@ -13,7 +13,7 @@ import { Score } from "./Score";
 export class App
 {
 	public static readonly WIDTH = 1500;
-	public static readonly HEIGHT = 800;
+	public static readonly HEIGHT = 700;
 	public static readonly TOP_GROUND = 600;
 	public static readonly BOTTOM_GROUND = 700;
 	private readonly canvas: HTMLCanvasElement;
@@ -98,5 +98,3 @@ export class App
 			requestAnimationFrame(this.render);
 	}
 }
-
-document.addEventListener("DOMContentLoaded", () => new App());
