@@ -10,6 +10,8 @@ import { PowerUpSpawner } from "./power-ups/PowerUpSpawner";
 import { Projectile } from "./Projectile";
 import { Score } from "./Score";
 
+type FinishedCallback = (won: boolean, score: number, maxScore: number) => void;
+
 export class App
 {
 	public static readonly WIDTH = 1500;
@@ -27,14 +29,14 @@ export class App
 	private lastDeltaTime = 0;
 	private isFinished = false;
 
-	constructor()
+	constructor(level: number, private readonly onLevelFinished: FinishedCallback)
 	{
 		this.canvas = document.getElementsByTagName("canvas")[0];
 		this.canvas.width = App.WIDTH;
 		this.canvas.height = App.HEIGHT;
 		this.ctx = this.canvas.getContext("2d")!;
 		this.sprites.push(this.player);
-		this.enemySpawner = new EnemySpawner((e) => this.sprites.push(e), () => {});
+		this.enemySpawner = new EnemySpawner(level, (e) => this.sprites.push(e), this.end);
 		this.render();
 	}
 	
@@ -43,6 +45,9 @@ export class App
 		if (sprite.isRectangleColliding(this.player)) {
 			this.sprites.push(...this.player.hit());
 			sprite.kill();
+			if (!this.player.isAlive) {
+				this.end();
+			}
 		}
 		this.sprites.map((s) => {
 			if (!(s instanceof Projectile) || !sprite.isRectangleColliding(s)) {
@@ -61,6 +66,14 @@ export class App
 				}
 			}
 		});
+	}
+	private end() {
+		this.isFinished = true;
+		this.onLevelFinished(
+			this.player.isAlive,
+			this.score.get(),
+			this.enemySpawner.maxScore
+		);
 	}
 
 	public update(delta: number)

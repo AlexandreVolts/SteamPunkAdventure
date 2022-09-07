@@ -14,32 +14,28 @@ export class EnemySpawner
     "hive-whale": HiveWhale,
   };
   private elapsedTime = 0;
-  private level = 1;
   private delay = 0;
   private enemies: AEnemy[];
+  public readonly maxScore: number;
 
   constructor(
+    level: number,
     private readonly onNewEnemy: (enemy: AEnemy) => void,
-    private readonly onLevelFinished: (level: number) => void,
+    private readonly onLevelFinished: () => void,
   )
   {
-    this.enemies = this.loadLevel(this.level);
+    this.enemies = this.loadLevel(level - 1);
+    this.maxScore = this.enemies.reduce((prev, cur) => cur.score + prev, 0);
   }
 
   private loadLevel(level: number): AEnemy[]
   {
-    level--;
     this.delay = levels[level].delay;
     return (levels[level].composition.map((enemyData) => {
       const type = enemyData.type as keyof typeof EnemySpawner.ctors;
 
       return (Array.from({length: enemyData.quantity}).map(() => new EnemySpawner.ctors[type]()));
     }).flat());
-  }
-  private increaseLevel(): void
-  {
-    this.level++;
-    this.enemies = this.loadLevel(this.level);
   }
   private generate(): AEnemy
   {
@@ -59,8 +55,7 @@ export class EnemySpawner
     }
     this.elapsedTime = 0;
     if (this.isLevelFinished) {
-      this.onLevelFinished(this.level);
-      this.increaseLevel();
+      this.onLevelFinished();
     }
   }
   public get isLevelFinished(): boolean

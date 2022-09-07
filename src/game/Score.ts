@@ -12,4 +12,8 @@ export class Score
   {
     this.score += added * 100;
   }
+  public get(): number
+  {
+    return (this.score);
+  }
 }
