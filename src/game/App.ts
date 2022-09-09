@@ -49,7 +49,7 @@ export class App
 				this.end();
 			}
 		}
-		this.sprites.map((s) => {
+		this.sprites.forEach((s) => {
 			if (!(s instanceof Projectile) || !sprite.isRectangleColliding(s)) {
 				return;
 			}

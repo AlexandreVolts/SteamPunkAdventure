@@ -12,7 +12,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/select-level" element={<SelectLevel />} />
-        <Route path="/game" element={<Game />} />
+        <Route path="/game/:level" element={<Game />} />
       </Routes>
     </Layout>
   );
