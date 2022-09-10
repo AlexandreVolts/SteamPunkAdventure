@@ -1,14 +1,5 @@
-import { useState } from "react";
-
-interface GameImagesProps
-{
-
-}
 export default function GameImages()
 {
-  const [progress, setProgress] = useState(0);
-  const nbAssets = 16;
-
   return (
     <div className="hidden">
       <img id="bg-layer-1" src="/assets/background/layer1.png" alt="" />

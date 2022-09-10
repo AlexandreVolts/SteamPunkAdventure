@@ -10,7 +10,7 @@ interface ButtonProps
 export default function Button(props: ButtonProps)
 {
   return (
-    <Link to={props.to}>
+    <Link to={props.to} className={props.disabled ? "pointer-events-none" : "pointer-events-auto"}>
       <GradientBorder>
         <button
           className="bg-red-900 disabled:bg-gray-800 p-7 text-white text-center hover:bg-red-800 cursor-pointer"

@@ -21,7 +21,6 @@ export class EnemySpawner
   constructor(
     level: number,
     private readonly onNewEnemy: (enemy: AEnemy) => void,
-    private readonly onLevelFinished: () => void,
   )
   {
     this.enemies = this.loadLevel(level - 1);
@@ -54,11 +53,8 @@ export class EnemySpawner
       this.onNewEnemy(this.generate());
     }
     this.elapsedTime = 0;
-    if (this.isLevelFinished) {
-      this.onLevelFinished();
-    }
   }
-  public get isLevelFinished(): boolean
+  public get areAllEnemiesKilled(): boolean
   {
     return (this.enemies.filter((e) => e.isAlive).length === 0);
   }

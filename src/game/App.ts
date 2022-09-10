@@ -4,6 +4,7 @@ import { AEnemy } from "./enemies/AEnemy";
 import { EnemySpawner } from "./enemies/EnemySpawner";
 import { HiveWhale } from "./enemies/HiveWhale";
 import { LuckyFish } from "./enemies/LuckyFish";
+import { GearParticle } from "./particles/GearParticle";
 import { Player } from "./Player";
 import { APowerUp } from "./power-ups/APowerUp";
 import { PowerUpSpawner } from "./power-ups/PowerUpSpawner";
@@ -16,8 +17,8 @@ export class App
 {
 	public static readonly WIDTH = 1500;
 	public static readonly HEIGHT = 700;
-	public static readonly TOP_GROUND = 600;
-	public static readonly BOTTOM_GROUND = 700;
+	public static readonly TOP_GROUND = 550;
+	public static readonly BOTTOM_GROUND = 650;
 	private readonly canvas: HTMLCanvasElement;
 	private readonly ctx: CanvasRenderingContext2D;
 	private readonly background = new Background();
@@ -36,19 +37,20 @@ export class App
 		this.canvas.height = App.HEIGHT;
 		this.ctx = this.canvas.getContext("2d")!;
 		this.sprites.push(this.player);
-		this.enemySpawner = new EnemySpawner(level, (e) => this.sprites.push(e), this.end);
+		this.enemySpawner = new EnemySpawner(level, (e) => this.sprites.push(e));
 		this.render();
 	}
-	
+
+	private onCollideWithEnemy(sprite: AEnemy)
+	{
+		if (!sprite.isRectangleColliding(this.player)) {
+			return;
+		}
+		this.sprites.push(...this.player.hit());
+		sprite.kill();
+	}
 	private manageEnemy(sprite: AEnemy)
 	{
-		if (sprite.isRectangleColliding(this.player)) {
-			this.sprites.push(...this.player.hit());
-			sprite.kill();
-			if (!this.player.isAlive) {
-				this.end();
-			}
-		}
 		this.sprites.forEach((s) => {
 			if (!(s instanceof Projectile) || !sprite.isRectangleColliding(s)) {
 				return;
@@ -67,13 +69,21 @@ export class App
 			}
 		});
 	}
-	private end() {
+	private end = () => {
 		this.isFinished = true;
 		this.onLevelFinished(
 			this.player.isAlive,
 			this.score.get(),
-			this.enemySpawner.maxScore
+			this.enemySpawner.maxScore,
 		);
+	}
+	private get areAllParticlesDead(): boolean
+	{
+		return (!this.sprites.filter((sprite) => sprite instanceof GearParticle).length)
+	}
+	private get areAllEntitiesDead(): boolean
+	{
+		return (this.enemySpawner.areAllEnemiesKilled && this.areAllParticlesDead);
 	}
 
 	public update(delta: number)
@@ -82,8 +92,11 @@ export class App
 		this.enemySpawner.update(delta);
 		for (const sprite of this.sprites) {
 			sprite.update(delta);
+			if (this.isFinished)
+				continue;
 			if (sprite instanceof AEnemy) {
 				this.manageEnemy(sprite);
+				this.onCollideWithEnemy(sprite);
 			}
 			if (sprite instanceof APowerUp && this.player.isRectangleColliding(sprite)) {
 				this.player.attachPowerUp(sprite);
@@ -91,6 +104,9 @@ export class App
 			}
 		}
 		this.sprites = this.sprites.filter((sprite) => sprite.isAlive);
+		if ((!this.player.isAlive && this.areAllParticlesDead) || this.areAllEntitiesDead) {
+			this.end();
+		}
 	}
 	public draw()
 	{
@@ -107,7 +123,6 @@ export class App
 		this.update((elapsedTime - this.lastDeltaTime) / 1000);
 		this.draw();
 		this.lastDeltaTime = elapsedTime;
-		if (!this.isFinished)
-			requestAnimationFrame(this.render);
+		window.requestAnimationFrame(this.render);
 	}
 }
