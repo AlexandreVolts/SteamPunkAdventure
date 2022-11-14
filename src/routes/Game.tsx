@@ -36,7 +36,7 @@ export default function Game()
     <div className="flex justify-center">
       <GradientBorder>
         <canvas></canvas>
-      </GradientBorder>
+      </GradientBorder> 
       <GameImages />
     </div>
   );
