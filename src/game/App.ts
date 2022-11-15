@@ -43,7 +43,7 @@ export class App
 
 	private onCollideWithEnemy(sprite: AEnemy)
 	{
-		if (!sprite.isRectangleColliding(this.player)) {
+		if (!sprite.isRectangleColliding(this.player) || !this.player.isAlive) {
 			return;
 		}
 		this.sprites.push(...this.player.hit());

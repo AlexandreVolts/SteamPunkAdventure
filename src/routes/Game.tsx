@@ -4,8 +4,7 @@ import GameImages from "../components/GameImages";
 import GradientBorder from "../components/GradientBorder";
 import { App } from "../game/App";
 
-export default function Game()
-{
+export default function Game() {
   const { level } = useParams();
   const [hasWon, setHasWon] = useState<boolean>();
   const [score, setScore] = useState(0);
@@ -13,30 +12,34 @@ export default function Game()
 
   const isLevelValid = useCallback((level?: string): boolean => {
     const n = parseInt(level || "0");
-   
+
     return (!isNaN(n) && n > 0 && n < 5);
   }, []);
-  const onLevelFinished = useCallback((hasWon: boolean, score: number, maxScore:number): void => {
+  const onLevelFinished = useCallback((hasWon: boolean, score: number, maxScore: number): void => {
     setHasWon(hasWon);
     setScore(score);
     setRank(~~(score / maxScore * 3));
   }, [setHasWon, setScore, setRank]);
 
   useEffect(() => {
-    if (!isLevelValid(level)) {
-      return;
+    if (isLevelValid(level)) {
+      new App(parseInt(level!), onLevelFinished);
     }
-    new App(parseInt(level!), onLevelFinished);
   }, [level, isLevelValid, onLevelFinished]);
 
   if (!isLevelValid(level)) {
     return (<Navigate to="/select-level" />);
   }
   return (
-    <div className="flex justify-center">
+    <div className="m-auto" style={{ width: App.WIDTH }}>
       <GradientBorder>
-        <canvas></canvas>
-      </GradientBorder> 
+        <div className="relative">
+          <div className={`absolute bg-black/75 w-full h-full transition-all duration-1000 ${hasWon !== undefined ? 'opacity-1' : 'opacity-0'}`}>
+            <p className="text-white">Score: {score}</p>
+          </div>
+          <canvas></canvas>
+        </div>
+      </GradientBorder>
       <GameImages />
     </div>
   );
