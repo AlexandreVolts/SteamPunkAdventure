@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
+import EndScreen from "../components/EndScreen";
 import GameImages from "../components/GameImages";
 import GradientBorder from "../components/GradientBorder";
 import { App } from "../game/App";
@@ -34,9 +35,7 @@ export default function Game() {
     <div className="m-auto" style={{ width: App.WIDTH }}>
       <GradientBorder>
         <div className="relative">
-          <div className={`absolute bg-black/75 w-full h-full transition-all duration-1000 ${hasWon !== undefined ? 'opacity-1' : 'opacity-0'}`}>
-            <p className="text-white">Score: {score}</p>
-          </div>
+          <EndScreen score={score} hasWon={hasWon} rank={rank} level={parseInt(level!)} />
           <canvas></canvas>
         </div>
       </GradientBorder>

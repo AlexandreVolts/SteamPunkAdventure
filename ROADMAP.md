@@ -6,9 +6,9 @@
   - Adding a life bar to the player
 
 - Making a nice UI when the game end
-  - Find adequate icons for the UI (read next tasks)
+  - **Find adequate icons for the UI (read next tasks)**
   - Display: stars depending on the rank
-  - Display 3 buttons: Back to the menu | Play again | Next Level
+  - **Display 3 buttons: Back to the menu | Play again | Next Level**
 
 - Data saving:
   - Save best score, rank, and if a user won a game (create hook useStorage)
@@ -17,6 +17,7 @@
 
 - Level Selection:
   - Display best score and rank of finished levels
+  - Add a wave system
   - Add a button state for finished levels
   - Add a button effect when mouse hover
   - Add more levels
