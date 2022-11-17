@@ -23,7 +23,7 @@ export class EnemySpawner
     private readonly onNewEnemy: (enemy: AEnemy) => void,
   )
   {
-    this.enemies = this.loadLevel(level - 1);
+    this.enemies = this.loadLevel(level);
     this.maxScore = this.enemies.reduce((prev, cur) => cur.score + prev, 0);
   }
 

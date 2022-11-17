@@ -1,3 +1,5 @@
+import { App } from "./App";
+
 export class Score
 {
   private score = 0;
@@ -6,7 +8,7 @@ export class Score
   {
     ctx.fillStyle = "white";
     ctx.font = "25px 'Steam Punk Flyer'";
-    ctx.fillText(`Score: ${this.score} points`, 20, 40);
+    ctx.fillText(`Score: ${this.score} points`, App.WIDTH - 250, 40);
   }
   public add(added: number): void
   {
