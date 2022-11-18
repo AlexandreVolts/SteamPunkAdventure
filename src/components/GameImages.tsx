@@ -9,6 +9,7 @@ export default function GameImages()
 
       <img id="player" src="/assets/player.png" alt="" />
       <img id="projectile" src="/assets/projectile.png" alt="" />
+      <img id="life" src="/assets/life.png" alt="" />
 
       <img id="angler" src="/assets/enemies/angler.png" alt="" />
       <img id="night-angler" src="/assets/enemies/night-angler.png" alt="" />

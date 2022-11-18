@@ -3,7 +3,7 @@
 ## V 1.0:
 
 - Improve game:
-  - Adding a life bar to the player
+  - **Adding a life bar to the player**
   - Add a wave system
   - Add more levels
 
@@ -19,6 +19,6 @@
   - **Redirect a user back to level selection when he tries to hack the URL**
 
 - Level Selection:
-  - Display best score and rank of finished levels
+  - Display **best score** and rank of finished levels
   - Add a button state for finished levels
   - Add a button effect when mouse hover

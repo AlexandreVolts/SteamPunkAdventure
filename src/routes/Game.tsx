@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import EndScreen from "../components/EndScreen";
-import GameImages from "../components/GameImages";
 import GradientBorder from "../components/GradientBorder";
 import { App } from "../game/App";
 import useStorage from "../hooks/useStorage";
+import LevelSave from "../types/LevelSave";
 
 export default function Game() {
   const { level } = useParams();
   const { data, save, allowedLevels } = useStorage();
-  const [isFinished, setIsFinished] = useState(false);
+  const [gameData, setGameData] = useState<LevelSave>();
 
   const lvl = parseInt(level ?? "-1");
 
@@ -18,16 +18,17 @@ export default function Game() {
   }, [allowedLevels]);
   const onLevelFinished = useCallback((hasWon: boolean, score: number, maxScore: number): void => {
     const rank = ~~(score / (maxScore * 3));
+    const gameData = { hasWon, score, rank };
 
-    save(lvl, { hasWon, score, rank });
-    setIsFinished(true);
-  }, [lvl, save, setIsFinished]);
+    save(lvl, gameData);
+    setGameData(gameData);
+  }, [lvl, save, setGameData]);
 
   useEffect(() => {
-    if (isLevelValid(lvl) && !isFinished) {
+    if (isLevelValid(lvl) && !gameData) {
       new App(lvl, onLevelFinished);
     }
-  }, [lvl, isFinished, isLevelValid, onLevelFinished]);
+  }, [lvl, gameData, isLevelValid, onLevelFinished]);
 
   if (!isLevelValid(lvl)) {
     return (<Navigate to="/select-level" />);
@@ -36,11 +37,10 @@ export default function Game() {
     <div className="m-auto" style={{ width: App.WIDTH }}>
       <GradientBorder>
         <div className="relative">
-          <EndScreen {...data[lvl]} level={lvl} display={isFinished} />
-          <canvas></canvas>
+          <EndScreen {...gameData!} bestScore={data[lvl]?.score} level={lvl} display={!!gameData} />
+          <canvas className="cursor-none"></canvas>
         </div>
       </GradientBorder>
-      <GameImages />
     </div>
   );
 }

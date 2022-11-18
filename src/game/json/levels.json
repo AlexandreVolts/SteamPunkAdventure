@@ -46,5 +46,39 @@
         "quantity": 1
       }
     ]
+  },
+  {
+    "delay": 1.6,
+    "composition": [
+      {
+        "type": "angler",
+        "quantity": 8
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 1
+      },
+      {
+        "type": "hive-whale",
+        "quantity": 1
+      }
+    ]
+  },
+  {
+    "delay": 2,
+    "composition": [
+      {
+        "type": "angler",
+        "quantity": 2
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 3
+      },
+      {
+        "type": "hive-whale",
+        "quantity": 3
+      }
+    ]
   }
 ]
