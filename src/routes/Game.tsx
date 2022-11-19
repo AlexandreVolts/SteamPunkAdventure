@@ -17,8 +17,7 @@ export default function Game() {
     return (!isNaN(n) && n >= 0 && n < allowedLevels);
   }, [allowedLevels]);
   const onLevelFinished = useCallback((hasWon: boolean, score: number, maxScore: number): void => {
-    const rank = ~~(score / (maxScore * 3));
-    const gameData = { hasWon, score, rank };
+    const gameData = { hasWon, score, maxScore };
 
     save(lvl, gameData);
     setGameData(gameData);

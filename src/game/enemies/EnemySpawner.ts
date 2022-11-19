@@ -4,6 +4,7 @@ import { HiveWhale } from "./HiveWhale";
 import { LuckyFish } from "./LuckyFish";
 import { NightAngler } from "./NightAngler";
 import levels from "./../json/levels.json";
+import { Drone } from "./Drone";
 
 export class EnemySpawner
 {
@@ -12,6 +13,7 @@ export class EnemySpawner
     "night-angler": NightAngler,
     "lucky-fish": LuckyFish,
     "hive-whale": HiveWhale,
+    "drone": Drone,
   };
   private elapsedTime = 0;
   private delay = 0;
@@ -24,7 +26,7 @@ export class EnemySpawner
   )
   {
     this.enemies = this.loadLevel(level);
-    this.maxScore = this.enemies.reduce((prev, cur) => cur.score + prev, 0);
+    this.maxScore = this.enemies.reduce((prev, cur) => cur.score * 100 * 2 + prev, 0);
   }
 
   private loadLevel(level: number): AEnemy[]

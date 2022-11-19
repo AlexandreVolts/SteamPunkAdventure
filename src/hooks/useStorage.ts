@@ -17,7 +17,7 @@ export default function useStorage() {
     if (isDataExisting) {
       currentData.hasWon = currentData.hasWon || levelSave.hasWon;
       currentData.score = Math.max(currentData.score, levelSave.score);
-      currentData.rank = Math.max(currentData.rank, levelSave.rank);
+      currentData.maxScore = Math.max(currentData.maxScore, levelSave.maxScore);
     }
     cpy[level] = isDataExisting ? currentData : levelSave;
     localStorage.setItem("save", JSON.stringify(cpy));

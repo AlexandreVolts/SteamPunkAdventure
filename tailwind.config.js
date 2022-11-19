@@ -19,12 +19,23 @@ module.exports = {
         'fade-in-delay-1': 'fade-in 1s linear 1s forwards',
         'fade-in-delay-2': 'fade-in 1s linear 1.33s forwards',
         'fade-in-delay-3': 'fade-in 1s linear 1.66s forwards',
+        'dezoom': 'dezoom 1s forwards',
       },
       keyframes: {
         'fade-in': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
-        }
+        },
+        'dezoom': {
+          '0%': {
+            opacity: 0,
+            transform: 'scale(8) rotate(180deg)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'scale(0.9) rotate(0deg)',
+          },
+        },
       },
     },
   },

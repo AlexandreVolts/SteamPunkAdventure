@@ -15,3 +15,7 @@
 
 - Adding a life bar to the player
 - Display best score
+
+# 0.4
+
+- Display: stars depending on the rank

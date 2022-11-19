@@ -1,10 +1,12 @@
 import Button from "../components/Button";
 import DashedLine from "../components/DashedLine";
+import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
 import useStorage from "../hooks/useStorage";
 import levels from "./../game/json/levels.json";
 
 export default function SelectLevel() {
   const { allowedLevels } = useStorage();
+  const ref = useHorizontalScroll() as any;
 
   const generateButtons = () => Array.from({ length: levels.length }).map((_, index) => (
     <div key={index} className="flex items-center">
@@ -15,12 +17,12 @@ export default function SelectLevel() {
           disabled={index >= allowedLevels}
         />
       </div>
-      {index < levels.length - 1 && <DashedLine disabled={index >= allowedLevels} />}
+      {index < levels.length - 1 && <DashedLine disabled={index >= allowedLevels - 1} />}
     </div>
   ));
   return (
     <div className="flex justify-center">
-      <div className="flex overflow-hidden p-5">
+      <div ref={ref} className="flex overflow-auto w-3/4 p-5">
         {generateButtons()}
       </div>
     </div>

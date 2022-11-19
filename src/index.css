@@ -6,3 +6,12 @@
   font-family: "Steam Punk Flyer";
   src: url('../public/fonts/Steam Punk Flyer.ttf');
 }
+
+::-webkit-scrollbar {
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: blue;
+  border-radius: 5px;
+}

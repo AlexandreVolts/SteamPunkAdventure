@@ -48,6 +48,19 @@
     ]
   },
   {
+    "delay": 0.75,
+    "composition": [
+      {
+        "type": "drone",
+        "quantity": 40
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 1
+      }
+    ]
+  },
+  {
     "delay": 1.6,
     "composition": [
       {
