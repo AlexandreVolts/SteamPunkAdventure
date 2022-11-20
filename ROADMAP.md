@@ -23,6 +23,9 @@
   - **Redirect a user back to level selection when he tries to hack the URL**
 
 - Level Selection:
-  - Display best score and rank of finished levels
+  - **Display best score and rank of finished levels**
   - Add a button state for finished levels
   - Add a button effect when mouse hover
+
+Fix:
+ - Game can be finished when all enemies appeared and no particle is on screen
