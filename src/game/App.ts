@@ -114,7 +114,8 @@ export class App
 		for (const sprite of this.sprites) {
 			sprite.draw(this.ctx);
 		}
-		this.score.draw(this.ctx);
+		if (!this.isFinished)
+			this.score.draw(this.ctx);
 		this.background.drawForeground(this.ctx);
 	}
 	public render = (elapsedTime = 0) =>

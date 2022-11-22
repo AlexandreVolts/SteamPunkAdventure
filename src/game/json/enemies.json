@@ -24,7 +24,7 @@
     "rows": 2
   },
   "lucky-fish": {
-    "lives": 18,
+    "lives": 15,
     "size": {
       "min": 0.7,
       "max": 0.9
@@ -36,10 +36,10 @@
     "rows": 2
   },
   "hive-whale": {
-    "lives": 20,
+    "lives": 18,
     "size": {
-      "min": 2,
-      "max": 2
+      "min": 2.25,
+      "max": 2.5
     },
     "speed": {
       "min": 150,

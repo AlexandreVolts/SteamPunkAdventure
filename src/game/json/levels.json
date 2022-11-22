@@ -1,23 +1,26 @@
 [
   {
+    "name": "What are these strange robots ?",
     "delay": 1.4,
     "composition": [
       {
         "type": "angler",
-        "quantity": 25
+        "quantity": 20
       }
     ]
   },
   {
+    "name": "The angler's nest",
     "delay": 1,
     "composition": [
       {
         "type": "angler",
-        "quantity": 30
+        "quantity": 35
       }
     ]
   },
   {
+    "name": "Anglers evolved !",
     "delay": 1.3,
     "composition": [
       {
@@ -31,6 +34,7 @@
     ]
   },
   {
+    "name": "A shiny angler",
     "delay": 1.5,
     "composition": [
       {
@@ -48,7 +52,8 @@
     ]
   },
   {
-    "delay": 0.75,
+    "name": "The cog's cloud (1/3)",
+    "delay": 0.7,
     "composition": [
       {
         "type": "drone",
@@ -61,11 +66,48 @@
     ]
   },
   {
+    "name": "The cog's cloud (2/3)",
+    "delay": 0.8,
+    "composition": [
+      {
+        "type": "drone",
+        "quantity": 30
+      },
+      {
+        "type": "angler",
+        "quantity": 10
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "name": "The cog's cloud (3/3)",
+    "delay": 0.9,
+    "composition": [
+      {
+        "type": "drone",
+        "quantity": 25
+      },
+      {
+        "type": "night-angler",
+        "quantity": 10
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 2
+      }
+    ]
+  },
+  {
+    "name": "A very big monster",
     "delay": 1.6,
     "composition": [
       {
         "type": "angler",
-        "quantity": 8
+        "quantity": 10
       },
       {
         "type": "lucky-fish",
@@ -78,11 +120,12 @@
     ]
   },
   {
+    "name": "Wait, that monster wasn't alone ?",
     "delay": 2,
     "composition": [
       {
         "type": "angler",
-        "quantity": 2
+        "quantity": 5
       },
       {
         "type": "lucky-fish",
@@ -91,6 +134,46 @@
       {
         "type": "hive-whale",
         "quantity": 3
+      }
+    ]
+  },
+  {
+    "name": "Around the mechanical nest",
+    "delay": 2.6,
+    "composition": [
+      {
+        "type": "angler",
+        "quantity": 5
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 6
+      },
+      {
+        "type": "hive-whale",
+        "quantity": 8
+      }
+    ]
+  },
+  {
+    "name": "Inside the mechanical nest",
+    "delay": 2.25,
+    "composition": [
+      {
+        "type": "angler",
+        "quantity": 10
+      },
+      {
+        "type": "angler",
+        "quantity": 10
+      },
+      {
+        "type": "lucky-fish",
+        "quantity": 10
+      },
+      {
+        "type": "hive-whale",
+        "quantity": 10
       }
     ]
   }

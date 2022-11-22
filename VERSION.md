@@ -18,3 +18,10 @@
 
 ## 0.5
 - Display best score and rank of finished levels
+
+## 0.6
+- Add a button effect when mouse hover
+- Add a button state for finished levels
+- Hide score when game is finished
+- Add level names
+- Add more levels

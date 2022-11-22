@@ -21,11 +21,21 @@ module.exports = {
         'fade-in-delay-3': 'fade-in 1s linear 1.66s forwards',
         'bounce': 'bounce 1s infinite, fade-in 1s linear forwards',
         'dezoom': 'dezoom 1s forwards',
+        'red-shine': 'red-shine 1s infinite alternate',
+        'blue-shine': 'blue-shine 1s infinite alternate',
       },
       keyframes: {
         'fade-in': {
           '0%': { opacity: 0 },
           '100%': { opacity: 1 },
+        },
+        'red-shine': {
+          '0%': { backgroundColor: '#7f1d1d' },
+          '100%': { backgroundColor: '#b91c1c' },
+        },
+        'blue-shine': {
+          '0%': { backgroundColor: '#1d4ed8' },
+          '100%': { backgroundColor: '#1e3a8a' },
         },
         'dezoom': {
           '0%': {

@@ -7,6 +7,7 @@ interface ButtonProps {
   icon?: ReactElement;
   to: string;
   disabled?: boolean;
+  visited?: boolean;
 }
 export default function Button(props: ButtonProps)
 {
@@ -14,7 +15,7 @@ export default function Button(props: ButtonProps)
     <Link to={props.to} reloadDocument className={props.disabled ? "pointer-events-none" : "pointer-events-auto"}>
         <GradientBorder rounded>
           <button
-            className="w-full h-full bg-red-900 disabled:bg-gray-800 p-7 text-white text-center hover:bg-red-800 cursor-pointer rounded-full shadow-button select-none"
+            className={`w-full h-full ${props.visited ? 'bg-blue-900 hover:animate-blue-shine' : 'bg-red-900 hover:animate-red-shine'} disabled:bg-gray-800 p-7 text-white text-center cursor-pointer rounded-full shadow-button select-none`}
             disabled={props.disabled}
           >
             {props.icon}{props.text}

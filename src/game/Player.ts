@@ -46,8 +46,8 @@ export class Player extends AnimatedSprite {
         this.delay = 0;
         this.onShoot(new Projectile({ ...position }));
         if (this.overshoot) {
-            this.onShoot(new Projectile({ ...position }, { x: Projectile.SPEED, y: -Projectile.SPEED * 0.4 }));
-            this.onShoot(new Projectile({ ...position }, { x: Projectile.SPEED, y: Projectile.SPEED * 0.4 }));
+            this.onShoot(new Projectile({ ...position }, { x: Projectile.SPEED, y: -Projectile.SPEED * 0.25 }));
+            this.onShoot(new Projectile({ ...position }, { x: Projectile.SPEED, y: Projectile.SPEED * 0.25 }));
         }
     }
     private get lives(): number {

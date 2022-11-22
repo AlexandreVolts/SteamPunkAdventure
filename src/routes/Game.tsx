@@ -5,6 +5,7 @@ import GradientBorder from "../components/GradientBorder";
 import { App } from "../game/App";
 import useStorage from "../hooks/useStorage";
 import LevelSave from "../types/LevelSave";
+import levels from "./../game/json/levels.json";
 
 export default function Game() {
   const { level } = useParams();
@@ -36,7 +37,13 @@ export default function Game() {
     <div className="m-auto" style={{ width: App.WIDTH }}>
       <GradientBorder>
         <div className="relative">
-          <EndScreen {...gameData!} bestScore={data[lvl]?.score} level={lvl} display={!!gameData} />
+          <EndScreen
+            {...gameData!}
+            bestScore={data[lvl]?.score}
+            level={lvl}
+            display={!!gameData}
+            isLastLevel={lvl + 1 === levels.length}
+          />
           <canvas className="cursor-none"></canvas>
         </div>
       </GradientBorder>

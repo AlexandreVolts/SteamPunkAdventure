@@ -5,11 +5,12 @@
 - Improve game:
   - **Adding a life bar to the player**
   - Add a wave system
-  - Add more levels
-  - Add level names
-  - Add a pause system and pause game when screen is too small
+  - **Add more levels**
+  - **Add level names**
+  - Replace fixed screen width by a ratio
   - Add a button before starting a game
   - Juicy effects when damage taken (shake screen, red overlay)
+  - **Hide score when game is finished**
 
 - Making a nice UI when the game end
   - **Find adequate icons for the UI (read next tasks)**
@@ -22,10 +23,10 @@
   - Managing when last level finished.
   - **Redirect a user back to level selection when he tries to hack the URL**
 
-- Level Selection:
+- **Level Selection:**
   - **Display best score and rank of finished levels**
-  - Add a button state for finished levels
-  - Add a button effect when mouse hover
+  - **Add a button state for finished levels**
+  - **Add a button effect when mouse hover**
 
 Fix:
  - Game can be finished when all enemies appeared and no particle is on screen

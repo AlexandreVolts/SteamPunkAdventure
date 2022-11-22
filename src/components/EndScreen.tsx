@@ -5,6 +5,7 @@ import Button from "./Button";
 
 interface EndScreenProps extends LevelSave {
   display: boolean;
+  isLastLevel: boolean;
   level?: number;
   bestScore?: number;
 }
@@ -42,7 +43,7 @@ export default function EndScreen(props: EndScreenProps) {
         <li className={props.display ? "animate-fade-in-delay-1 opacity-0" : ""}>
           <Button icon={<IoMdHome color="rgb(220, 220, 50)" size="5rem" title="home" />} to="/select-level" />
         </li>
-        {props.hasWon && <li className={props.display ? "animate-fade-in-delay-2 opacity-0" : ""}>
+        {props.hasWon && !props.isLastLevel && <li className={props.display ? "animate-fade-in-delay-2 opacity-0" : ""}>
           <Button icon={<IoMdFastforward color="rgb(220, 220, 50)" size="5rem" title="next level" />} to={`/game/${(props.level || 0) + 1}`} />
         </li>}
         <li className={props.display ? "animate-fade-in-delay-3 opacity-0" : ""}>

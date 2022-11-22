@@ -1,11 +1,10 @@
 import { Vector2 } from "../Vector2";
 import { APowerUp } from "./APowerUp";
-import { InvinciblePower } from "./InvinciblePower";
 import { OvershootPower } from "./OvershootPower";
 
 export class PowerUpSpawner
 {
-  private static readonly ctors = [InvinciblePower, OvershootPower];
+  private static readonly ctors = [OvershootPower];
 
   public generate(position: Vector2): APowerUp
   {

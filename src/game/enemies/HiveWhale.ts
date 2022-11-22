@@ -5,7 +5,6 @@ import enemies from "./../json/enemies.json"
 export class HiveWhale extends AEnemy
 {
   public static readonly NB_DRONES = 5;
-  private static readonly LIVES = 25;
   public static readonly SPAWN_RATE = 0.05;
 
   constructor()
