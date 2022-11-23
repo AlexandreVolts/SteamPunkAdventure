@@ -1,5 +1,6 @@
 import { ASprite } from "./ASprite";
 import { Background } from "./Background";
+import { DamageEffect } from "./DamageEffect";
 import { AEnemy } from "./enemies/AEnemy";
 import { EnemySpawner } from "./enemies/EnemySpawner";
 import { HiveWhale } from "./enemies/HiveWhale";
@@ -15,8 +16,8 @@ type FinishedCallback = (won: boolean, score: number, maxScore: number) => void;
 
 export class App
 {
-	public static readonly WIDTH = 1500;
-	public static readonly HEIGHT = 700;
+	public static readonly WIDTH = 1300;
+	public static readonly HEIGHT = 1300 * (9 / 16);
 	public static readonly TOP_GROUND = 550;
 	public static readonly BOTTOM_GROUND = 650;
 	private readonly canvas: HTMLCanvasElement;
@@ -25,6 +26,7 @@ export class App
 	private readonly player = new Player((p) => this.sprites.push(p));
 	private readonly enemySpawner: EnemySpawner;
 	private readonly powerUpSpawner = new PowerUpSpawner();
+	private readonly damageEffect = new DamageEffect();
 	private readonly score = new Score();
 	private sprites = new Array<ASprite>();
 	private lastDeltaTime = 0;
@@ -47,6 +49,7 @@ export class App
 			return;
 		}
 		this.sprites.push(...this.player.hit());
+		this.damageEffect.trigger();
 		sprite.kill();
 	}
 	private manageEnemy(sprite: AEnemy)
@@ -86,10 +89,15 @@ export class App
 		return (this.enemySpawner.areAllEnemiesKilled && this.areAllParticlesDead);
 	}
 
+	public start()
+	{
+		this.enemySpawner.launch();
+	}
 	public update(delta: number)
 	{
 		this.background.update(delta);
 		this.enemySpawner.update(delta);
+		this.damageEffect.update(delta);
 		for (const sprite of this.sprites) {
 			sprite.update(delta);
 			if (this.isFinished)
@@ -110,6 +118,7 @@ export class App
 	}
 	public draw()
 	{
+		this.damageEffect.shake(this.ctx);
 		this.background.draw(this.ctx);
 		for (const sprite of this.sprites) {
 			sprite.draw(this.ctx);
@@ -117,6 +126,7 @@ export class App
 		if (!this.isFinished)
 			this.score.draw(this.ctx);
 		this.background.drawForeground(this.ctx);
+		this.damageEffect.draw(this.ctx);
 	}
 	public render = (elapsedTime = 0) =>
 	{

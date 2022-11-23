@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import LinkButton from "../components/LinkButton";
 import DashedLine from "../components/DashedLine";
 import Tooltip from "../components/Tooltip";
 import { useHorizontalScroll } from "../hooks/useHorizontalScroll";
@@ -14,9 +14,13 @@ export default function SelectLevel() {
 
     return (
       <div key={index} className="flex items-center">
-        <Tooltip score={data[index]?.score} rank={rank} name={level.name}>
+        <Tooltip
+          score={data[index]?.score}
+          rank={rank}
+          name={index < allowedLevels ? level.name : '???'}
+        >
           <div className="w-32 h-32 rotate-x-60">
-            <Button
+            <LinkButton
               text={(index + 1).toString()}
               to={`/game/${index}`}
               disabled={index >= allowedLevels}

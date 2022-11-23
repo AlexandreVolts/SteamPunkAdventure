@@ -1,7 +1,7 @@
 import { IoMdFastforward, IoMdHome, IoMdRefresh } from "react-icons/io"
 import useAutomaticCounter from "../hooks/useAutomaticCounter";
 import LevelSave from "../types/LevelSave";
-import Button from "./Button";
+import LinkButton from "./LinkButton";
 
 interface EndScreenProps extends LevelSave {
   display: boolean;
@@ -10,7 +10,7 @@ interface EndScreenProps extends LevelSave {
   bestScore?: number;
 }
 export default function EndScreen(props: EndScreenProps) {
-  const score = useAutomaticCounter(props.score);
+  const score = useAutomaticCounter(props.score, 350);
   const stars = ~~(score / props.maxScore * 3);
 
   return (
@@ -41,13 +41,13 @@ export default function EndScreen(props: EndScreenProps) {
       </div>
       <ul className="flex space-x-32">
         <li className={props.display ? "animate-fade-in-delay-1 opacity-0" : ""}>
-          <Button icon={<IoMdHome color="rgb(220, 220, 50)" size="5rem" title="home" />} to="/select-level" />
+          <LinkButton icon={<IoMdHome color="rgb(220, 220, 50)" size="5rem" title="home" />} to="/select-level" />
         </li>
         {props.hasWon && !props.isLastLevel && <li className={props.display ? "animate-fade-in-delay-2 opacity-0" : ""}>
-          <Button icon={<IoMdFastforward color="rgb(220, 220, 50)" size="5rem" title="next level" />} to={`/game/${(props.level || 0) + 1}`} />
+          <LinkButton icon={<IoMdFastforward color="rgb(220, 220, 50)" size="5rem" title="next level" />} to={`/game/${(props.level || 0) + 1}`} />
         </li>}
         <li className={props.display ? "animate-fade-in-delay-3 opacity-0" : ""}>
-          <Button icon={<IoMdRefresh color="rgb(220, 220, 50)" size="5rem" title="retry" />} to={`/game/${props.level}`} />
+          <LinkButton icon={<IoMdRefresh color="rgb(220, 220, 50)" size="5rem" title="retry" />} to={`/game/${props.level}`} />
         </li>
       </ul>
     </div>

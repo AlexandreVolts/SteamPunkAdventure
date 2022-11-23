@@ -18,6 +18,7 @@ export class EnemySpawner
   private elapsedTime = 0;
   private delay = 0;
   private enemies: AEnemy[];
+  private isStarted = false;
   public readonly maxScore: number;
 
   constructor(
@@ -45,8 +46,14 @@ export class EnemySpawner
     return (this.enemies.splice(index, 1)[0]);
   }
 
+  public launch()
+  {
+    this.isStarted = true;
+  }
   public update(delta: number): void
   {
+    if (!this.isStarted)
+      return;
     this.elapsedTime += delta;
     if (this.elapsedTime < this.delay) {
       return;

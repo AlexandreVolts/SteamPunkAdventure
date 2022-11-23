@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useAutomaticCounter(counter: number)
+export default function useAutomaticCounter(counter: number, speed = 50)
 {
   const [current, setCurrent] = useState(0);
 
@@ -12,11 +12,11 @@ export default function useAutomaticCounter(counter: number)
         setCurrent(0);
         return;
       }
-      setCurrent(Math.min(current + 350, counter));
+      setCurrent(Math.min(current + speed, counter));
     }, 50);
 
     return (() => clearTimeout(timeout));
-  }, [current, setCurrent, counter]);
+  }, [current, setCurrent, counter, speed]);
 
   return (current);
 }

@@ -79,7 +79,7 @@
       },
       {
         "type": "lucky-fish",
-        "quantity": 2
+        "quantity": 1
       }
     ]
   },
@@ -139,7 +139,7 @@
   },
   {
     "name": "Around the mechanical nest",
-    "delay": 2.6,
+    "delay": 2.8,
     "composition": [
       {
         "type": "angler",

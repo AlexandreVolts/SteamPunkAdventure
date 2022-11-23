@@ -8,8 +8,9 @@
   - **Add more levels**
   - **Add level names**
   - Replace fixed screen width by a ratio
-  - Add a button before starting a game
-  - Juicy effects when damage taken (shake screen, red overlay)
+  - Hide enemy spawn when player is dead
+  - **Add a button before starting a game**
+  - **Juicy effects when damage taken (shake screen, red overlay)**
   - **Hide score when game is finished**
 
 - Making a nice UI when the game end
@@ -20,7 +21,6 @@
 - Data saving:
   - **Save best score, rank, and if a user won a game (create hook useStorage)**
   - **Display available levels depending on if user won a game**
-  - Managing when last level finished.
   - **Redirect a user back to level selection when he tries to hack the URL**
 
 - **Level Selection:**
@@ -30,3 +30,5 @@
 
 Fix:
  - Game can be finished when all enemies appeared and no particle is on screen
+ - Sometimes sprites aren't loaded
+ - When a level contain Hive Whales, gold medal is too easy to obtain

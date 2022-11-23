@@ -27,10 +27,10 @@ export class AEnemy extends AnimatedSprite
         );
         const size = Utils.rand(props.size.min, props.size.max);
 
-        this.position.x = App.WIDTH;
-        this.position.y = AEnemy.HEIGHT + Math.random() * (App.TOP_GROUND - AEnemy.HEIGHT  * 2);
         this.size.x *= size;
         this.size.y *= size;
+        this.position.x = App.WIDTH;
+        this.position.y = this.size.x * 0.25 + Math.random() * (App.TOP_GROUND - this.size.x * 0.5);
         this.defaultSize = {...this.size};
         this.speed = Utils.rand(props.speed.min, props.speed.max);
         this.lives = ~~(props.lives * size);
