@@ -54,23 +54,24 @@ export class App
 	}
 	private manageEnemy(sprite: AEnemy)
 	{
-		this.sprites.forEach((s) => {
+		for (const s of this.sprites) {
 			if (!(s instanceof Projectile) || !sprite.isRectangleColliding(s)) {
-				return;
+				continue;
 			}
 			this.sprites.push(...sprite.hit());
 			s.hit = true;
 			this.score.add(1);
-			if (!sprite.isAlive) {
-				this.score.add(sprite.score);
-				if (sprite instanceof LuckyFish) {
-					this.sprites.push(this.powerUpSpawner.generate(sprite.getPosition()));
-				}
-				if (sprite instanceof HiveWhale) {
-					this.sprites.push(...sprite.generateChildren());
-				}
+			if (sprite.isAlive)
+				continue;
+			this.score.add(sprite.score);
+			if (sprite instanceof LuckyFish) {
+				this.sprites.push(this.powerUpSpawner.generate(sprite.getPosition()));
 			}
-		});
+			if (sprite instanceof HiveWhale) {
+				this.sprites.push(...sprite.generateChildren());
+			}
+			return;
+		};
 	}
 	private end = () => {
 		this.isFinished = true;
@@ -79,14 +80,19 @@ export class App
 			this.score.get(),
 			this.enemySpawner.maxScore,
 		);
+		this.enemySpawner.stop();
 	}
 	private get areAllParticlesDead(): boolean
 	{
-		return (!this.sprites.filter((sprite) => sprite instanceof GearParticle).length)
+		return (!this.sprites.filter((sprite) => sprite instanceof GearParticle).length);
+	}
+	private get areAllEnemiesKilled(): boolean
+	{
+		return (!this.sprites.filter((sprite) => sprite instanceof AEnemy && sprite.isAlive).length);
 	}
 	private get areAllEntitiesDead(): boolean
 	{
-		return (this.enemySpawner.areAllEnemiesKilled && this.areAllParticlesDead);
+		return (this.areAllEnemiesKilled && this.enemySpawner.isEmpty && this.areAllParticlesDead);
 	}
 
 	public start()

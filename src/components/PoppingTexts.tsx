@@ -12,11 +12,12 @@ export default function PoppingTexts(props: PoppingTextsProps)
   const max = 5000;
   const counter = useAutomaticCounter(max);
   const current = ~~(counter / max * props.texts.length);
+  const { onFinished } = props;
 
   useEffect(() => {
     if (max === counter)
-      props.onFinished();
-  }, [max, counter]);
+      onFinished();
+  }, [max, counter, onFinished]);
 
   return (
     <>

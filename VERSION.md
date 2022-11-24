@@ -14,7 +14,7 @@
 - Display best score
 
 ### 0.4
-- Display: stars depending on the rank
+- Display stars depending on the rank
 
 ### 0.5
 - Display best score and rank of finished levels
@@ -29,3 +29,8 @@
 ### 0.7
 - Juicy effects when damage taken (shake screen, red overlay)
 - Add a button before starting a game
+
+## 1.0
+- Hide enemy spawn when player is dead
+- Fix: Game can be finished when all enemies appeared and no particle is on screen
+- Fix: When a level contain Hive Whales, gold medal is too easy to obtain

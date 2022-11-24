@@ -18,7 +18,7 @@ export class EnemySpawner
   private elapsedTime = 0;
   private delay = 0;
   private enemies: AEnemy[];
-  private isStarted = false;
+  private isRunning = false;
   public readonly maxScore: number;
 
   constructor(
@@ -48,11 +48,15 @@ export class EnemySpawner
 
   public launch()
   {
-    this.isStarted = true;
+    this.isRunning = true;
+  }
+  public stop()
+  {
+    this.isRunning = false;
   }
   public update(delta: number): void
   {
-    if (!this.isStarted)
+    if (!this.isRunning)
       return;
     this.elapsedTime += delta;
     if (this.elapsedTime < this.delay) {
@@ -63,8 +67,8 @@ export class EnemySpawner
     }
     this.elapsedTime = 0;
   }
-  public get areAllEnemiesKilled(): boolean
+  public get isEmpty(): boolean
   {
-    return (this.enemies.filter((e) => e.isAlive).length === 0);
+    return (!this.enemies.length);
   }
 }
