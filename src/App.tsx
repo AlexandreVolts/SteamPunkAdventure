@@ -9,7 +9,7 @@ export default function App() {
   document.title = "Steam Punk Adventure";
 
   return (
-    <Layout>
+    <Layout hideTitle={window.location.pathname.indexOf("/game/") != -1}>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/select-level" element={<SelectLevel />} />
